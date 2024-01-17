@@ -1,0 +1,65 @@
+{
+  "name": "@marchyang/enhanced_promise",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev:web": "pack2 --mode=dev:web",
+    "dev:node": "pack2 --mode=dev:node",
+    "build:spa": "pack2 --mode=build:spa",
+    "eslint": "eslint ./src --fix",
+    "test": "jest --passWithNoTests",
+    "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --detectOpenHandles __tests__/chain.ts",
+    "test:file": "node ./node_modules/jest/bin/jest.js --runInBand --detectOpenHandles __tests__/concurrency.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@marchyang/lib-core": "^0.0.5"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^18.4.4",
+    "@commitlint/config-conventional": "^18.4.4",
+    "@marchyang/pack": "^1.0.7",
+    "@reduxjs/toolkit": "^1.9.3",
+    "@types/jest": "^29.5.11",
+    "@types/react": "^18.2.47",
+    "@types/react-dom": "^18.2.18",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-jest": "^27.6.2",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.3",
+    "jest": "^29.7.0",
+    "lint-staged": "^15.2.0",
+    "markdown-eslint-parser": "^1.2.1",
+    "prettier": "^3.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.10.0",
+    "redux": "^4.2.1",
+    "redux-thunk": "^2.4.2",
+    "stylelint": "^14.3.0",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-standard": "^24.0.0",
+    "stylelint-prettier": "^2.0.0",
+    "ts-jest": "^29.1.1"
+  },
+  "type": "module",
+  "lint-staged": {
+    "**.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --config .prettierrc --write"
+    ],
+    "*.+(css|less|scss|sass)": "stylelint --fix"
+  },
+  "files": [
+    "lib/",
+    "package.json"
+  ]
+}
