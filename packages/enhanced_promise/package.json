@@ -1,12 +1,13 @@
 {
   "name": "@marchyang/enhanced_promise",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev:web": "pack2 --mode=dev:web",
     "dev:node": "pack2 --mode=dev:node",
     "build:spa": "pack2 --mode=build:spa",
+    "build:lib": "tsc --project tsconfig.build.json",
     "eslint": "eslint ./src --fix",
     "test": "jest --passWithNoTests",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --detectOpenHandles __tests__/chain.ts",
@@ -15,7 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@marchyang/lib-core": "^0.0.5"
+    "@marchyang/lib-core": "^0.0.6"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.4.4",
