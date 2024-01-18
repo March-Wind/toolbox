@@ -21,4 +21,4 @@ const awaitWrap = async <T extends Promise<any>>(p: T): Promise<Result<Awaited<T
   ]
 };
 
-export default awaitWrap;
+export { awaitWrap };

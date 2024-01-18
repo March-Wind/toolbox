@@ -9,7 +9,7 @@ const getPromiseState = function (p: Promise<unknown>): Promise<PromiseState> {
   return Promise.race([p, t])
     .then(v => (v === t) ? "pending" : "fulfilled", () => "rejected");
 }
-export default getPromiseState;
+export { getPromiseState };
 // const a = Promise.resolve();
 // const b = Promise.reject();
 // const c = new Promise(() => { });

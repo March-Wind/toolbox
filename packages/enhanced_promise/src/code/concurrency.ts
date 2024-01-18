@@ -72,4 +72,4 @@ class Concurrency {
 }
 
 
-export default Concurrency;
+export { Concurrency };
