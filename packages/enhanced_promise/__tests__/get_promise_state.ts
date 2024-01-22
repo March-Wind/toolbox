@@ -1,5 +1,5 @@
 // FILEPATH: /Users/xmly/Documents/shadow/toolbox/packages/enhanced_promise/src/code/get_promise_state.test.ts
-import getPromiseState from '@/code/get_promise_state';
+import { getPromiseState } from '@/code/get_promise_state';
 
 describe('getPromiseState', () => {
   it('should return "fulfilled" for a resolved promise', async () => {

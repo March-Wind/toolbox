@@ -1,13 +1,22 @@
 {
   "name": "@marchyang/enhanced_promise",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "description": "",
-  "main": "lib/index.js",
+  "main": "./lib/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./lib/index.js"
+    }
+  },
   "scripts": {
     "dev:web": "pack2 --mode=dev:web",
     "dev:node": "pack2 --mode=dev:node",
     "build:spa": "pack2 --mode=build:spa",
-    "build:lib": "tsc --project tsconfig.build.json",
+    "build:lib": "tsc --project tsconfig.esm.json && tsc --project tsconfig.commonjs.json",
     "eslint": "eslint ./src --fix",
     "test": "jest --passWithNoTests",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --detectOpenHandles __tests__/chain.ts",
@@ -16,7 +25,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@marchyang/lib-core": "^0.0.6"
+    "@marchyang/lib-core": "^1.0.5"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.4.4",
@@ -60,6 +69,7 @@
     "*.+(css|less|scss|sass)": "stylelint --fix"
   },
   "files": [
+    "dist/",
     "lib/",
     "package.json"
   ]

@@ -1,5 +1,5 @@
 // FILEPATH: /Users/xmly/Documents/shadow/toolbox/packages/enhanced_promise/src/code/concurrency.test.ts
-import Concurrency from '@/code/concurrency';
+import { Concurrency } from '@/code/concurrency';
 describe('Concurrency', () => {
   it('should respect the concurrency limit', async () => {
     const concurrency = new Concurrency({ limit: 2 });

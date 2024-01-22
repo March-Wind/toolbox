@@ -70,7 +70,7 @@ const config: JestConfigWithTsJest = {
     '^@/(.*)$': '<rootDir>/src/$1',
     // ...pathsToModuleNameMapper(compilerOptions.paths /*, { prefix: '<rootDir>/' } */) // 跟tsconfig的paths一致
   },
-  // testTimeout: 10000, // 设置为 10 秒
+  testTimeout: 10000, // 设置为 10 秒
 };
 export default config;
 

@@ -1,11 +1,20 @@
 {
   "name": "@marchyang/lib-core",
-  "version": "0.0.6",
+  "version": "1.0.5",
   "description": "",
-  "main": "lib/index.js",
+  "main": "./lib/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./lib/index.js"
+    }
+  },
   "scripts": {
     "dev:web": "pack2 --mode=dev:web",
-    "build:lib": "tsc --project tsconfig.build.json",
+    "build:lib": "tsc --project tsconfig.esm.json && tsc --project tsconfig.commonjs.json",
     "dev:node": "pack2 --mode=dev:node",
     "build:spa": "pack2 --mode=build:spa",
     "eslint": "eslint ./src --fix",
@@ -56,6 +65,7 @@
     "*.+(css|less|scss|sass)": "stylelint --fix"
   },
   "files": [
+    "dist/",
     "lib/",
     "package.json"
   ]

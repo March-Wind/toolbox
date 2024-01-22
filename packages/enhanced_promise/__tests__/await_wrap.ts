@@ -1,4 +1,4 @@
-import awaitWrap from '@/code/await_wrap';
+import { awaitWrap } from '@/code/await_wrap';
 describe('awaitWrap', () => {
   it('should return fulfilled state and value when promise resolves', async () => {
     const promise = Promise.resolve('resolved value');

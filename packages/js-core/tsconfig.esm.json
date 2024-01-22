@@ -1,0 +1,48 @@
+{
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node",
+    "experimentalResolver": true,
+    "compilerOptions": {
+      "esModuleInterop": true,
+    }
+  },
+  "compilerOptions": {
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "module": "ES6",
+    "sourceMap": false,
+    "outDir": "./dist",
+    "jsx": "react",
+    "baseUrl": "./",
+    "skipLibCheck": true,
+    "moduleResolution": "Node",
+    "noUnusedParameters": true,
+    "strictPropertyInitialization": false,
+    "strict": true,
+    "lib": [
+      "DOM",
+      "esnext"
+    ],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
+  },
+  "exclude": [
+    "node_modules",
+    "lib"
+  ],
+  "include": [
+    "src/code/**/*.ts",  // 包含的 TypeScript 文件路径
+    "src/code/**/*.tsx"  // 包含的 TypeScript 文件路径
+  ],
+  "files": [
+    "./src/global.d.ts"
+  ]
+}
