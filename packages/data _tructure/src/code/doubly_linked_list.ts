@@ -20,9 +20,9 @@ class DoublyLinkedNode<T extends object> {
 class DoublyLinkedList<T extends object> {
   private head: DoublyLinkedNode<T> | null;
   private tail: DoublyLinkedNode<T> | null;
-  constructor(params: { head: DoublyLinkedNode<T> | null; tail: DoublyLinkedNode<T> | null }) {
-    this.head = params.head;
-    this.tail = params.tail;
+  constructor(params?: { head: DoublyLinkedNode<T> | null; tail: DoublyLinkedNode<T> | null }) {
+    this.head = params?.head || null;
+    this.tail = params?.tail || null;
   }
   get headNode() {
     return this.head;

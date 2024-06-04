@@ -1,10 +1,8 @@
 {
   "name": "@marchyang/data_structure",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "description": "",
   "main": "./lib/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -65,7 +63,6 @@
     "*.+(css|less|scss|sass)": "stylelint --fix"
   },
   "files": [
-    "dist/",
     "lib/",
     "package.json"
   ]
