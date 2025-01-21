@@ -1,6 +1,11 @@
 import { isNumber, isObject } from "./variable-type";
 
-const padStart = (str: string | number, maxlength = 2, filler = '0', local: 'prefix' | 'suffix' = 'prefix') => {
+const padStart = (
+  str: string | number,
+  maxlength = 2,
+  filler = '0',
+  local: 'prefix' | 'suffix' = 'prefix'
+) => {
   let newStr = str.toString();
   while (newStr.length < maxlength) {
     if (local === 'prefix') {
@@ -46,47 +51,51 @@ const getTimeObj = (_time: number, CM = true) => {
  * @param {any} form: YYYY、MM、DD、hh、mm、ss、DT形式的任意一段，DT会分别写出”日“的中文，包括”今天“/"明天",如果不是这两天，就变成了DD
  * @returns {any}
  */
-const formatTime = (time: number, form: string) => {// "YYYY-MM-DD hh:mm:ss" | "today hh:mm"
+const formatTime = (time: number, form: string) => {
+  // "YYYY-MM-DD hh:mm:ss" | "today hh:mm"
   if (!time) {
-    throw new Error('format：传入参数和合法')
+    throw new Error('format：传入参数和合法');
   }
-  const { year, month, date, hours, minutes, seconds } = getTimeObj(time)
+  const { year, month, date, hours, minutes, seconds } = getTimeObj(time);
   const result = form.replace(/YYYY|MM|DD|hh|mm|ss/g, (match) => {
     switch (match) {
       case 'YYYY':
-        return padStart(year)
+        return padStart(year);
       case 'MM':
-        return padStart(month)
+        return padStart(month);
       case 'DT': {
         const currentDate = getTimeObj(new Date().getTime());
-        if (year === currentDate.year &&
+        if (
+          year === currentDate.year &&
           month === currentDate.month &&
-          date === currentDate.date) {
-          return '今天'
+          date === currentDate.date
+        ) {
+          return '今天';
         }
-        if (year === currentDate.year &&
+        if (
+          year === currentDate.year &&
           month === currentDate.month &&
-          date === currentDate.date + 1) {
-          return '明天'
+          date === currentDate.date + 1
+        ) {
+          return '明天';
         }
       }
       // eslint-disable-next-line no-fallthrough
       case 'DD':
-        return padStart(date)
+        return padStart(date);
       case 'hh':
-        return padStart(hours)
+        return padStart(hours);
       case 'mm':
-        return padStart(minutes)
+        return padStart(minutes);
       case 'ss':
-        return padStart(seconds)
+        return padStart(seconds);
 
       default:
         return match;
     }
-  })
-  return result
+  });
+  return result;
 };
-
 
 /**
  * 是否是相同的时间，level中Y代表年，ms是毫秒
@@ -96,9 +105,13 @@ const formatTime = (time: number, form: string) => {// "YYYY-MM-DD hh:mm:ss" | "
  * @param {('Y' | 'M' | 'D' | 'h' | 'm' | 's' | 'ms')} [level='D']
  * @return {*}  {boolean}
  */
-const isSameTime = (time1: number, time2: number, level: 'Y' | 'M' | 'D' | 'h' | 'm' | 's' | 'ms' = 'D'): boolean => {
+const isSameTime = (
+  time1: number,
+  time2: number,
+  level: 'Y' | 'M' | 'D' | 'h' | 'm' | 's' | 'ms' = 'D'
+): boolean => {
   const tO1 = getTimeObj(time1);
-  const tO2 = getTimeObj(time2)
+  const tO2 = getTimeObj(time2);
   switch (level) {
     case 'ms':
       if (tO1.milliseconds !== tO2.milliseconds) {
@@ -138,11 +151,11 @@ const isSameTime = (time1: number, time2: number, level: 'Y' | 'M' | 'D' | 'h' |
     default:
       return true;
   }
-}
+};
 type TimeLevel = 'Y' | 'M' | 'D' | 'h' | 'm' | 's' | 'ms';
 type TAdditional = {
   [level in TimeLevel]?: number;
-}
+};
 /**
  * 增加或减少年月日时分秒毫秒操作
  *
@@ -152,42 +165,42 @@ type TAdditional = {
  */
 const operateTime = (time: number, additional: TAdditional): Date => {
   if (!time || !isObject(additional)) {
-    throw new Error('addOrSubtracTime：入参不合法')
+    throw new Error('addOrSubtracTime：入参不合法');
   }
   const target = new Date(time);
   const tO = getTimeObj(time, false);
   const keys = Object.keys(additional) as TimeLevel[];
   keys.forEach((key) => {
-    const operatoin = additional[key];
-    if (!isNumber(operatoin)) {
+    const operation = additional[key] ;
+    if (!isNumber(operation)) {
       return;
     }
     switch (key) {
       case 'ms':
-        target.setMilliseconds(tO.milliseconds + operatoin)
+        target.setMilliseconds(tO.milliseconds + operation!);
         break;
       case 's':
-        target.setSeconds(tO.seconds + operatoin)
+        target.setSeconds(tO.seconds + operation!);
         break;
       case 'm':
-        target.setMinutes(tO.minutes + operatoin)
+        target.setMinutes(tO.minutes + operation!);
         break;
       case 'h':
-        target.setHours(tO.hours + operatoin)
+        target.setHours(tO.hours + operation!);
         break;
       case 'D':
-        target.setDate(tO.date + operatoin)
+        target.setDate(tO.date + operation!);
         break;
       case 'M':
-        target.setMonth(tO.month + operatoin)
+        target.setMonth(tO.month + operation!);
         break;
       case 'Y':
-        target.setFullYear(tO.year + operatoin)
+        target.setFullYear(tO.year + operation!);
         break;
     }
-  })
-  return target
-}
+  });
+  return target;
+};
 
 /**
  * 更新时间的某个层级,当设置月的时候，从0开始
@@ -205,30 +218,30 @@ const updataTimeLevel = (time: number, updataLevel: TAdditional): Date => {
     }
     switch (key) {
       case 'ms':
-        target.setMilliseconds(num)
+        target.setMilliseconds(num);
         break;
       case 's':
-        target.setSeconds(num)
+        target.setSeconds(num);
         break;
       case 'm':
-        target.setMinutes(num)
+        target.setMinutes(num);
         break;
       case 'h':
-        target.setHours(num)
+        target.setHours(num);
         break;
       case 'D':
-        target.setDate(num)
+        target.setDate(num);
         break;
       case 'M':
-        target.setMonth(num)
+        target.setMonth(num);
         break;
       case 'Y':
-        target.setFullYear(num)
+        target.setFullYear(num);
         break;
     }
-  })
-  return target
-}
+  });
+  return target;
+};
 export {
   getTimeObj,
   formatTime,
@@ -236,4 +249,4 @@ export {
   isSameTime,
   operateTime,
   updataTimeLevel
-}
+};
